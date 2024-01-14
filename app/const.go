@@ -11,7 +11,7 @@ const (
 	CoinType = 330
 
 	// BondDenom staking denom
-	BondDenom = "uluna"
+	BondDenom = "uopza"
 
 	authzMsgExec                        = "/cosmos.authz.v1beta1.MsgExec"
 	authzMsgGrant                       = "/cosmos.authz.v1beta1.MsgGrant"
