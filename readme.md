@@ -255,7 +255,7 @@ You can also run a local testnet using a single node. On a local testnet, you wi
 First, initialize your genesis file to bootstrap your network. Create a name for your local testnet and provide a moniker to refer to your node:
 
 ```bash
-terrad init --chain-id=<testnet_name> <node_moniker>
+opzd init $(hostname) --overwrite --chain-id paradise-1 
 ```
 
 Next, create a Terra account by running the following command:
@@ -269,9 +269,9 @@ terrad keys add <account_name>
 Add your account to genesis and set an initial balance to start. Run the following commands to add your account and set the initial balance:
 
 ```bash
-terrad add-genesis-account $(terrad keys show <account_name> -a) 100000000uluna
-terrad gentx <account_name> 10000000uluna --chain-id=<testnet_name>
-terrad collect-gentxs
+opzd add-genesis-account $(opzd keys show  $(hostname) --address) 1000000000000uopza
+opzd gentx $(hostname) 100000000000uopza --chain-id paradise-1
+opzd collect-gentxs
 ```
 
 **Step 3: Run terrad**
@@ -279,10 +279,10 @@ terrad collect-gentxs
 Now you can start your private Terra network:
 
 ```bash
-terrad start
+opzd start
 ```
 
-Your `terrad` node will be running a node on `tcp://localhost:26656`, listening for incoming transactions and signing blocks.
+Your `opzd` node will be running a node on `tcp://localhost:26656`, listening for incoming transactions and signing blocks.
 
 ## Set up a production environment
 
@@ -292,7 +292,7 @@ Your `terrad` node will be running a node on `tcp://localhost:26656`, listening 
 
 ### Increase maximum open files
 
-By default, `terrad` can't open more than 1024 files at once.
+By default, `opzd` can't open more than 1024 files at once.
 
 You can increase this limit by modifying `/etc/security/limits.conf` and raising the `nofile` capability.
 
@@ -303,11 +303,11 @@ You can increase this limit by modifying `/etc/security/limits.conf` and raising
 
 ### Create a dedicated user
 
-It is recommended that you run `terrad` as a normal user. Super-user accounts are only recommended during setup to create and modify files.
+It is recommended that you run `opzd` as a normal user. Super-user accounts are only recommended during setup to create and modify files.
 
 ### Port configuration
 
-`terrad` uses several TCP ports for different purposes.
+`opzd` uses several TCP ports for different purposes.
 
 - `26656`: The default port for the P2P protocol. Use this port to communicate with other nodes. While this port must be open to join a network, it does not have to be open to the public. Validator nodes should configure `persistent_peers` and close this port to the public.
 
@@ -321,24 +321,24 @@ It is recommended that you run `terrad` as a normal user. Super-user accounts ar
 
 **Important**:
 
-Keep `terrad` running at all times. The simplest solution is to register `terrad` as a `systemd` service so that it automatically starts after system reboots and other events.
+Keep `opzd` running at all times. The simplest solution is to register `opzd` as a `systemd` service so that it automatically starts after system reboots and other events.
 
 
 ### Register terrad as a service
 
 First, create a service definition file in `/etc/systemd/system`.
 
-**Sample file: `/etc/systemd/system/terrad.service`**
+**Sample file: `/etc/systemd/system/opzd.service`**
 
 ```
 [Unit]
-Description=Terra Daemon
+Description=Opzapp Daemon
 After=network.target
 
 [Service]
 Type=simple
 User=terra
-ExecStart=/data/terra/go/bin/terrad start
+ExecStart=/data/terra/go/bin/opzd start
 Restart=on-abort
 
 [Install]
@@ -359,22 +359,22 @@ Use `systemctl` to control (start, stop, restart)
 
 ```bash
 # Start
-systemctl start terrad
+systemctl start opzd
 # Stop
-systemctl stop terrad
+systemctl stop opzd
 # Restart
-systemctl restart terrad
+systemctl restart opzd
 ```
 
 ### Access logs
 
 ```bash
 # Entire log
-journalctl -t terrad
+journalctl -t opzd
 # Entire log reversed
-journalctl -t terrad -r
+journalctl -t opzd -r
 # Latest and continuous
-journalctl -t terrad -f
+journalctl -t opzd -f
 ```
 
 ## Resources

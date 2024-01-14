@@ -4,6 +4,7 @@ import (
 	"github.com/terra-money/core/v2/app/wasmconfig"
 
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
+	appConfig "github.com/terra-money/core/v2/app"
 )
 
 // TerraAppConfig terra specify app config
@@ -32,7 +33,7 @@ func initAppConfig() (string, interface{}) {
 	//   own app.toml to override, or use this default value.
 	//
 	// In simapp, we set the min gas prices to 0.
-	srvCfg.MinGasPrices = "0uluna"
+	srvCfg.MinGasPrices = "0" + appConfig.BondDenom
 
 	terraAppConfig := TerraAppConfig{
 		Config:     *srvCfg,
