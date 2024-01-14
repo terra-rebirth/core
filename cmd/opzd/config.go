@@ -4,6 +4,7 @@ import (
 	"github.com/terra-money/core/v2/app/wasmconfig"
 
 	serverconfig "github.com/cosmos/cosmos-sdk/server/config"
+
 	appConfig "github.com/terra-money/core/v2/app"
 )
 
