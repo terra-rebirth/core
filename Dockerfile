@@ -36,14 +36,9 @@ RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS="-linkmode=external -extldflag
 
 FROM alpine:3.15.4
 
-RUN addgroup terra \
-    && adduser -G terra -D -h /terra terra
+WORKDIR /root
 
-WORKDIR /terra
-
-COPY --from=go-builder /code/build/terrad /usr/local/bin/terrad
-
-USER terra
+COPY --from=go-builder /code/build/opzd /usr/local/bin/opzd
 
 # rest server
 EXPOSE 1317
@@ -54,4 +49,4 @@ EXPOSE 26656
 # tendermint rpc
 EXPOSE 26657
 
-CMD ["/usr/local/bin/terrad", "version"]
+CMD ["/usr/local/bin/opzd", "version"]
