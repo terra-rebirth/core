@@ -15,7 +15,6 @@ RUN apk add git cmake
 RUN git clone https://github.com/terrarebirth/core.git && mv core /code 
 WORKDIR /code
 
-RUN git checkout v2.2.0
 # Install mimalloc
 RUN git clone --depth 1 https://github.com/microsoft/mimalloc; cd mimalloc; mkdir build; cd build; cmake ..; make -j$(nproc); make install
 ENV MIMALLOC_RESERVE_HUGE_OS_PAGES=4
@@ -46,7 +45,7 @@ USER terra
 
 WORKDIR /terra
 
-COPY --from=go-builder /code/build/opzd /usr/local/bin/opzd
+COPY --from=go-builder /code/build/terrad /usr/local/bin/opzd
 
 # rest server
 EXPOSE 1317
