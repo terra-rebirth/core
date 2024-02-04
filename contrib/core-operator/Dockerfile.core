@@ -12,9 +12,10 @@ RUN apk add git cmake
 # NOTE: add these to run with LEDGER_ENABLED=true
 # RUN apk add libusb-dev linux-headers
 
-RUN git clone https://github.com/terrarebirth/core.git && mv core /code
+RUN git clone https://github.com/terrarebirth/core.git && mv core /code 
 WORKDIR /code
 
+RUN git checkout v2.2.0
 # Install mimalloc
 RUN git clone --depth 1 https://github.com/microsoft/mimalloc; cd mimalloc; mkdir build; cd build; cmake ..; make -j$(nproc); make install
 ENV MIMALLOC_RESERVE_HUGE_OS_PAGES=4
@@ -28,6 +29,7 @@ RUN WASMVM_VERSION=$(go list -m github.com/CosmWasm/wasmvm | cut -d ' ' -f 2) \
 
 # force it to use static lib (from above) not standard libgo_cosmwasm.so file
 RUN LEDGER_ENABLED=false BUILD_TAGS=muslc LDFLAGS="-linkmode=external -extldflags \"-L/code/mimalloc/build -lmimalloc -Wl,-z,muldefs -static\"" make build
+
 
 FROM ubuntu:22.04
 

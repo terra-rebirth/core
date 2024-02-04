@@ -58,5 +58,7 @@ terrarebirth/core-node v2.2.0-testnet   07c907dd1c86   2 minutes ago   62.6MB
 ```
 ## Building Dockerfile.core
 ```
+cd ~/core
+docker build -t terrarebirth/core:v2.2.0 -f ./contrib/core-operator/Dockerfile.core .
 
 ```
