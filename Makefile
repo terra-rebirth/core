@@ -120,15 +120,15 @@ endif
 
 build-linux:
 	mkdir -p $(BUILDDIR)
-	docker build --no-cache --tag terramoney/core ./
-	docker create --name temp terramoney/core:latest
+	docker build --no-cache --tag terrarebirth/core ./
+	docker create --name temp terrarebirth/core:latest
 	docker cp temp:/usr/local/bin/opzd $(BUILDDIR)/
 	docker rm temp
 
 build-linux-with-shared-library:
 	mkdir -p $(BUILDDIR)
-	docker build --tag terramoney/core-shared ./ -f ./shared.Dockerfile
-	docker create --name temp terramoney/core-shared:latest
+	docker build --tag terrarebirth/core-shared ./ -f ./shared.Dockerfile
+	docker create --name temp terrarebirth/core-shared:latest
 	docker cp temp:/usr/local/bin/opzd $(BUILDDIR)/
 	docker cp temp:/lib/libwasmvm.so $(BUILDDIR)/
 	docker rm temp
