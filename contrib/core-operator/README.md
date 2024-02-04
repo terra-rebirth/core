@@ -47,5 +47,16 @@ docker run -it -p 1317:1317 -p 26657:26657 -p 26656:26656 terramoney/core-node:v
 ## Building the Docker images
 
 ```
-./build_all.sh v0.5.11-oracle
+cd ~/core
+./contrib/core-operator/build_all.sh
+```
+## output 
+
+```
+terrarebirth/core-node v2.2.0           07c907dd1c86   2 minutes ago   62.6MB
+terrarebirth/core-node v2.2.0-testnet   07c907dd1c86   2 minutes ago   62.6MB
+```
+## Building Dockerfile.core
+```
+
 ```
