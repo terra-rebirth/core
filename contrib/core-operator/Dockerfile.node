@@ -1,5 +1,5 @@
 ARG base_image=terrarebirth/core
-ARG version=latest
+ARG version=ubuntu.22.04
 
 FROM ${base_image}:${version}
 

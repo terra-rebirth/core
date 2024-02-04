@@ -12,8 +12,8 @@ SNAPSHOT_BASE_URL="${SNAPSHOT_BASE_URL:-https://getsfo.quicksync.io}"
 opzd init --chain-id $CHAINID moniker
 
 # Backup for templating
-mv ~/.terra/config/config.toml ~/config.toml
-mv ~/.terra/config/app.toml ~/app.toml
+mv ~/.opzapp/config/config.toml ~/config.toml
+mv ~/.opzapp/config/app.toml ~/app.toml
 
 if [ "$CHAINID" = "columbus-5" ] ; then wget -O ~/.opzapp/config/genesis.json https://columbus-genesis.s3.ap-northeast-1.amazonaws.com/columbus-5-genesis.json; fi; \
 if [ "$CHAINID" = "columbus-5" ] ; then wget -O ~/.opzapp/config/addrbook.json https://networks.mcontrol.ml/columbus/addrbook.json; fi; \

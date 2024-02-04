@@ -56,22 +56,22 @@ cd ~/core
 terrarebirth/core-node v2.2.0           07c907dd1c86   2 minutes ago   62.6MB
 terrarebirth/core-node v2.2.0-testnet   07c907dd1c86   2 minutes ago   62.6MB
 ```
+
+# START UP WITH FULLNODE USING DOCKER
+
+## preliminary setting 
+
+
 ## 1-Building Dockerfile.core
 ```
 cd ~/core
 docker build -t terrarebirth/core:ubuntu.22.04 -f ./contrib/core-operator/Dockerfile.core .
-docker build -t terrarebirth/core:v2.2.0 -f ./contrib/core-operator/Dockerfile.node .
 ```
-## 1-Building Dockerfile.node
+## 2-Building Dockerfile.node
 ```
-cd ~/core
-docker build -t terrarebirth/core:ubuntu.22.04 -f ./contrib/core-operator/Dockerfile.core .
-docker build -t terrarebirth/core:v2.2.0 -f ./contrib/core-operator/Dockerfile.node .
+cd ~/core/contrib/core-operator
+docker build -t terrarebirth/fullnode:ubuntu.22.04 -f ~/core/contrib/core-operator/Dockerfile.node .
 ```
-### 3-Docker-compose.build
-fullnode with ./contrib/core-operator/dockerfile
-core with ./dockerfile
-
-
-### 4-Docker-compose-env
-add full environment
+### 3-Docker-compose
+cd ~/core/contrib/core-operator
+docker compose up
