@@ -1,4 +1,4 @@
-ARG base_image=classic-terra/core
+ARG base_image=terrarebirth/core
 ARG version=latest
 
 FROM ${base_image}:${version}
