@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile.node
       args:
         base_image: terrarebirth/core
-        version: :ubuntu.22.04
+        version: ubuntu.22.04
       platforms:
         - "linux/amd64"
       labels:
