@@ -115,16 +115,10 @@ build: go.sum
 ifeq ($(OS),Windows_NT)
 	exit 1
 else
-$(info ################################################################)
-$(info $(BUILD_FLAGS) $(VERSION))
-$(info ################################################################)
 	go build -mod=readonly $(BUILD_FLAGS) -o build/opzd ./cmd/opzd
 endif
 
 build-linux:
-$(info ################################################################)
-$(info $(BUILD_FLAGS) $(VERSION))
-$(info ################################################################)
 	mkdir -p $(BUILDDIR)
 	docker build --no-cache --tag terrarebirth/core ./
 	docker create --name temp terrarebirth/core:latest
