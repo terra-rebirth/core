@@ -1,9 +1,31 @@
+# to run as fullnode
 version: '3.8'
 
 services:
+   core:
+     image: terrarebirth/core:ubuntu.22.04
+     build:
+      context: .
+      dockerfile: Dockerfile.core
+      platforms:
+        - "linux/amd64"
+      labels:
+        - "description=Contains bare opzd binary"
+   fullnode:
+     image: terrarebirth/fullnode::ubuntu.22.04
+     build: 
+      context: .
+      dockerfile: Dockerfile.node
+      args:
+        base_image: terrarebirth/core
+        version: :ubuntu.22.04
+      platforms:
+        - "linux/amd64"
+      labels:
+        - "description=Contains for run a full node"
    node:
      container_name: node
-     image: public.ecr.aws/classic-terra/node:alpine3.17
+     image: terrarebirth/fullnode:ubuntu.22.04
      platform: linux/amd64
      environment:
        - CHAINID=test

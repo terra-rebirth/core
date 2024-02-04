@@ -44,7 +44,7 @@ Starting a bombay node:
 docker run -it -p 1317:1317 -p 26657:26657 -p 26656:26656 terramoney/core-node:v0.5.11-oracle-testnet
 ```
 
-## Building the Docker images
+## 2-Building the Docker images
 
 ```
 cd ~/core
@@ -56,9 +56,16 @@ cd ~/core
 terrarebirth/core-node v2.2.0           07c907dd1c86   2 minutes ago   62.6MB
 terrarebirth/core-node v2.2.0-testnet   07c907dd1c86   2 minutes ago   62.6MB
 ```
-## Building Dockerfile.core
+## 1-Building Dockerfile.core
 ```
 cd ~/core
 docker build -t terrarebirth/core:v2.2.0 -f ./contrib/core-operator/Dockerfile.core .
 
 ```
+### 3-Docker-compose.build
+fullnode with ./contrib/core-operator/dockerfile
+core with ./dockerfile
+
+
+### 4-Docker-compose-env
+add full environment
