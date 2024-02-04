@@ -65,13 +65,13 @@ terrarebirth/core-node v2.2.0-testnet   07c907dd1c86   2 minutes ago   62.6MB
 ## 1-Building Dockerfile.core
 ```
 cd ~/core
-docker build -t terrarebirth/core:ubuntu.22.04 -f ./contrib/core-operator/Dockerfile.core .
+docker build -t terrarebirth/core:ubuntu.22.04 -f ./contrib/node-validator/Dockerfile.core .
 ```
 ## 2-Building Dockerfile.node
 ```
-cd ~/core/contrib/core-operator
-docker build -t terrarebirth/fullnode:ubuntu.22.04 -f ~/core/contrib/core-operator/Dockerfile.node .
+cd ~/core/contrib/node-validator
+docker build -t terrarebirth/fullnode:ubuntu.22.04 -f ~/core/contrib/node-validator/Dockerfile.node .
 ```
 ### 3-Docker-compose
-cd ~/core/contrib/core-operator
+cd ~/core/contrib/node-validator
 docker compose up
